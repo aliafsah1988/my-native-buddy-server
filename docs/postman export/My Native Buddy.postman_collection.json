@@ -1,0 +1,887 @@
+{
+	"info": {
+		"_postman_id": "6e0a73f8-082c-4ec3-83cc-45fc861af090",
+		"name": "My Native Buddy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get user by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/user?id=5c0a5ad17e4d7b2975b39a50",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5c0a5ad17e4d7b2975b39a50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/user/getAll?skip=0&limit=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"getAll"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update a user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"user01@aliafsah.commmmm\",\n  \"password\": \"$2a$08$jVAMUrhMPlsMsQwoFwnXTON2wGHme2o0QoYlKIp1Gp5p0Ho5c9Zem\",\n  \"role\" : \"user\",\n  \"active\": \"true\",\n  \"firstName\": \"a user\",\n  \"lastName\": \"don't have\",\n  \"phone_number\": \"01234\",\n  \"location\":\"earth\",\n  \"birth_date\": \"2020-06-23T00:00:00.000+00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/user?id=5ef0fdc177447e3218731d12",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5ef0fdc177447e3218731d12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/user?id=5ef0fdc177447e3218731d12",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5ef0fdc177447e3218731d12"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "group",
+			"item": [
+				{
+					"name": "create group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"group1\",\r\n  \"description\": \"test something\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/group",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByUserId groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/group/getByUserId?userId=5c0a5ad17e4d7b2975b39a50&skip=0&limit=0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"group",
+								"getByUserId"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5c0a5ad17e4d7b2975b39a50"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get my groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/group/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"group",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/group?id=5f43ff669a655736b00f1845",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"group"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5f43ff669a655736b00f1845"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update word",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"test1111111111111111\",\r\n  \"description\": \"test somethinggggggggggggggggggg\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/group?id=5f43ff669a655736b00f1845",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"group"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5f43ff669a655736b00f1845"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete group",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"some comment\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/group?id=5f44b4b1b4e4b00d6c143766",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"group"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5f44b4b1b4e4b00d6c143766"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "word",
+			"item": [
+				{
+					"name": "create word",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"text\": \"test11111111111\",\r\n  \"description\": \"test something\",\r\n  \"synonyms\": \"test\",\r\n  \"translation\" : \"تست\",\r\n  \"groupId\" : \"5f443055b2e9a114109335f9\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/word",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"word"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByUserId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/word/getByUserId?userId=5c0a5ad17e4d7b2975b39a50&skip=0&limit=0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"word",
+								"getByUserId"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5c0a5ad17e4d7b2975b39a50"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get my words",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/word/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"word",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/word?id=5efc6fe464a0d91c4cdd36dc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"word"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5efc6fe464a0d91c4cdd36dc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete word",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"some comment\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/group?id=5f43ff669a655736b00f1845",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"group"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5f43ff669a655736b00f1845"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update group",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"text\": \"test1\",\r\n  \"description\": \"test something\",\r\n  \"synonyms\": \"testttt\",\r\n  \"translation\" : \"تتتتست\",\r\n  \"groupId\" : \"5f442da9d5afa530d05709e7\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/word?id=5f01b3a2d202d432283f7193",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"word"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5f01b3a2d202d432283f7193"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login super",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\" : \"super\",\n  \"password\" : \"123\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/auth/getToken",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"getToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\" : \"ali@aliafsah.com\",\n  \"password\" : \"123\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/auth/getToken",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"getToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register a user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViODdlMWMwMDg3ZGYyMjUxMGZiZGMyMCIsImlhdCI6MTUzNTYzMzIwMn0.3fVY8dLzO4eNaNpb-QnDQ5MKKQIWdcw9Tgs4bxmjQ7M"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"user01@aliafsah.com\",\n  \"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViNGYyNjdlNWNhYjIyYjhjMTc5YjNmMCIsImlhdCI6MTUzMjE2MzM4OCwiZXhwIjoxNTMyMjQ5Nzg4fQ.HvL8796D4_9p5BO0654X7yMDXGW9kL4BbAdwwiYQD_s"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "practice",
+			"item": [
+				{
+					"name": "get today",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/practice?groupId=5f4529b5242d950bf00ae16c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"practice"
+							],
+							"query": [
+								{
+									"key": "groupId",
+									"value": "5f4529b5242d950bf00ae16c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check practice",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "encType",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\" : \"test\",\n\t\"wordId\": \"5ef0f6128e07b82ffce43a38\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/practice",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"practice"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1e19f4be-f012-4a89-894b-37772469385c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "905b6e96-5c4b-43d6-957f-7cceba47198f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "094f6add-701b-43ef-ad30-2ac111f2aa41",
+			"key": "url",
+			"value": "http://127.0.0.1:3000/api"
+		},
+		{
+			"id": "8cae2665-536d-43e0-b0af-139fa59dc519",
+			"key": "token",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}
