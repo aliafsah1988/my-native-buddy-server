@@ -7,6 +7,7 @@ function WordModel(
   correctcount,
   userId,
   groupId,
+  langId,
   createDate,
   persistDate
 ) {
@@ -18,6 +19,7 @@ function WordModel(
   if (correctcount !== null && correctcount !== undefined) this.correctcount = correctcount
   if (userId) this.userId = userId
   if (groupId) this.groupId = groupId
+  if (langId) this.langId = langId
   if (createDate) this.createDate = createDate
   if (persistDate) this.persistDate = persistDate
 }

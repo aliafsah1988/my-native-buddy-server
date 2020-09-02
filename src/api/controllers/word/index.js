@@ -18,6 +18,7 @@ class WordController {
         const synonyms = req.body.synonyms
         const translation = req.body.translation
         const groupId = req.body.groupId
+        const langId = req.body.langId
         const today = dateHelper.today()
 
         if (await words.getByUserIdAndText(userId, text)) { return apiResponse.sendInternalError(res, 'word already exists') }
@@ -30,6 +31,7 @@ class WordController {
           0,
           userId,
           groupId,
+          langId,
           dateHelper.now())
 
         words.create(newWord, (
@@ -86,6 +88,7 @@ class WordController {
         const synonyms = req.body.synonyms
         const translation = req.body.translation
         const groupId = req.body.groupId
+        const langId = req.body.langId
 
         const existedWord = await words.getByUserIdAndText(userId, text)
         if (existedWord && existedWord._id && existedWord._id.toString() !== wordId) {
@@ -101,6 +104,7 @@ class WordController {
           null,
           null,
           groupId,
+          langId,
           null,
           dateHelper.now()
         )

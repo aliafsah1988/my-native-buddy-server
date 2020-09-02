@@ -423,7 +423,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"text\": \"test11111111111\",\r\n  \"description\": \"test something\",\r\n  \"synonyms\": \"test\",\r\n  \"translation\" : \"تست\",\r\n  \"groupId\" : \"5f443055b2e9a114109335f9\"\r\n}"
+							"raw": "{\r\n  \"text\": \"test11111111111\",\r\n  \"description\": \"test something\",\r\n  \"synonyms\": \"test\",\r\n  \"translation\" : \"تست\",\r\n  \"groupId\" : \"5f443055b2e9a114109335f9\",\r\n  \"langId\" : \"1\"\r\n}"
 						},
 						"url": {
 							"raw": "{{url}}/word",
@@ -609,10 +609,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"text\": \"test1\",\r\n  \"description\": \"test something\",\r\n  \"synonyms\": \"testttt\",\r\n  \"translation\" : \"تتتتست\",\r\n  \"groupId\" : \"5f442da9d5afa530d05709e7\"\r\n}"
+							"raw": "{\r\n  \"text\": \"test1\",\r\n  \"description\": \"test something\",\r\n  \"synonyms\": \"testttt\",\r\n  \"translation\" : \"تتتتست\",\r\n  \"groupId\" : \"5f442da9d5afa530d05709e7\",\r\n  \"langId\" : \"2\"\r\n}"
 						},
 						"url": {
-							"raw": "{{url}}/word?id=5f01b3a2d202d432283f7193",
+							"raw": "{{url}}/word?id=5f452ceb4b013e2edcd617ab",
 							"host": [
 								"{{url}}"
 							],
@@ -622,7 +622,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "5f01b3a2d202d432283f7193"
+									"value": "5f452ceb4b013e2edcd617ab"
 								}
 							]
 						}
@@ -794,7 +794,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/practice?groupId=5f452946242d950bf00ae167",
+							"raw": "{{url}}/practice?groupId=5f443055b2e9a114109335f9",
 							"host": [
 								"{{url}}"
 							],
@@ -804,7 +804,7 @@
 							"query": [
 								{
 									"key": "groupId",
-									"value": "5f452946242d950bf00ae167"
+									"value": "5f443055b2e9a114109335f9"
 								}
 							]
 						}
@@ -932,12 +932,12 @@
 	],
 	"variable": [
 		{
-			"id": "f507f484-a4ea-4b71-a1a3-3b5d659b13f0",
+			"id": "381c3533-e1af-4d0f-af2a-022d1666ae01",
 			"key": "url",
 			"value": "http://127.0.0.1:3000/api"
 		},
 		{
-			"id": "e13321be-13f5-48c5-9d2a-f12d9d139a72",
+			"id": "1904c1f0-1340-4887-b151-a17d0ae778ba",
 			"key": "token",
 			"value": ""
 		}
