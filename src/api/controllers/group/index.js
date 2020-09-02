@@ -15,10 +15,12 @@ class GroupController {
       const userId = user._id
       const name = req.body.name
       const description = req.body.description
+      const langId = req.body.langId
 
       const newGroup = new GroupModel(name,
         description,
         userId,
+        langId,
         dateHelper.now())
 
       const result = await groups.create(newGroup)
@@ -57,10 +59,12 @@ class GroupController {
       const groupId = req.query.id
       const name = req.body.name
       const description = req.body.description
+      const langId = req.body.langId
 
       const newGroup = new GroupModel(name,
         description,
         userId,
+        langId,
         null,
         dateHelper.now())
 
