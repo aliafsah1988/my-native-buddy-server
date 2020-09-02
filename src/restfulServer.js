@@ -8,6 +8,7 @@ import authRouts from './api/routes/auth'
 import wordRouts from './api/routes/word'
 import groupRouts from './api/routes/group'
 import practiceRouts from './api/routes/practice'
+import langRouts from './api/routes/lang'
 
 import dataBase from './dataBase'
 import logger from './infrastructure/logger'
@@ -63,6 +64,7 @@ function registerRoutes() {
   wordRouts(app)
   practiceRouts(app)
   groupRouts(app)
+  langRouts(app)
 }
 
 function initial() {
