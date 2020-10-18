@@ -932,12 +932,12 @@
 	],
 	"variable": [
 		{
-			"id": "381c3533-e1af-4d0f-af2a-022d1666ae01",
+			"id": "d41518a7-dc90-4038-8d0a-0dcca6044459",
 			"key": "url",
 			"value": "http://127.0.0.1:3000/api"
 		},
 		{
-			"id": "1904c1f0-1340-4887-b151-a17d0ae778ba",
+			"id": "53b6afe1-40fb-4d65-a445-236d4ca1f380",
 			"key": "token",
 			"value": ""
 		}
