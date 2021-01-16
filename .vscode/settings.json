@@ -1,10 +1,7 @@
 {
   "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
-  "eslint.alwaysShowStatus": true,
-  "eslint.enable": true,
-  "prettier.disableLanguages": [],
   "editor.fontSize": 20,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.tslint": true,
   }
 }

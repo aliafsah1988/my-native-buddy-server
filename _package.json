@@ -1,0 +1,42 @@
+{
+  "name": "my-native-buddy-server",
+  "author": {
+    "name": "Ali Afsahnoudeh",
+    "email": "ali.afsah1988@gmail.com",
+    "url": "http://aliafsah.com"
+  },
+  "repository": "github:aliafsah1988/my-native-buddy-server",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Server code of My Native Buddy project. A personal language trainer.",
+  "main": "app.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "start": "nodemon --exec babel-node src/app.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.16.3",
+    "http-status-codes": "^1.3.0",
+    "jsonwebtoken": "^8.3.0",
+    "moment": "^2.22.2",
+    "mongodb": "^3.1.8",
+    "winston": "^2.4.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.18.11"
+  }
+}
