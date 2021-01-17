@@ -1,9 +1,9 @@
 interface IRepository<T> {
     getAll: (skip: number, limit: number) => Promise<T[]>;
-    getById: (id: object) => T;
-    insert: (newEntry: T) => any;
-    update: (id: object, modifiedEntry: T) => any;
-    deleteById: (id: object) => any;
+    getById: (id: string) => Promise<T>;
+    create: (newEntry: T) => Promise<any>;
+    // update: (id: object, modifiedEntry: T) => Promise<any>;
+    // deleteById: (id: object) => Promise<boolean>;
 }
 
 export default IRepository;
