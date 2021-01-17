@@ -1,5 +1,5 @@
 export default {
-  SERVER_PORT: 5000,
+  SERVER_PORT: 3000,
   SERVER_HOST: '127.0.0.1',
   MONGOD_USER: '',
   MONGOD_PASS: '',

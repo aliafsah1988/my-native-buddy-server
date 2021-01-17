@@ -2,17 +2,17 @@ import express from 'express';
 import IRestServer from './IRestServer';
 import bodyParser from 'body-parser';
 // import ValidationError from '../api/validators/ValidationError';
-import ISampleRoutes from 'api/routes/ISampleRoutes';
+import IRoute from 'api/routes/IRoute';
 import ILogger from './ILogger';
 
 class RestServer implements IRestServer {
     private readonly port: number;
     private readonly app: any;
     private readonly host: string;
-    private readonly sampleRoutes: ISampleRoutes;
+    private readonly sampleRoutes: IRoute;
     private readonly _logger: ILogger;
 
-    constructor(port: number, host: string, sampleRoutes: ISampleRoutes, logger: ILogger) {
+    constructor(port: number, host: string, sampleRoutes: IRoute, logger: ILogger) {
       this.app = express();
       this.port = port;
       this.host = host;

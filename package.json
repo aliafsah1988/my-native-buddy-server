@@ -1,14 +1,14 @@
 {
-  "name": "node-typescript-mvc",
+  "name": "my-native-buddy-server",
   "author": {
     "name": "Ali Afsahnoudeh",
     "email": "ali.afsah1988@gmail.com",
     "url": "http://aliafsah.com"
   },
-  "repository": "",
-  "version": "1.0.0",
+  "repository": "github:aliafsah1988/my-native-buddy-server",
+  "version": "2.0.0",
   "private": false,
-  "description": "",
+  "description": "Server code of My Native Buddy project. A personal language trainer.",
   "main": "dist/index.js",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",

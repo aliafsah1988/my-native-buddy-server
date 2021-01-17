@@ -1,6 +1,6 @@
-interface ISampleRoutes {
+interface IRoute {
     registerApp(app: any): void;
     attach(): void;
 }
 
-export default ISampleRoutes;
+export default IRoute;

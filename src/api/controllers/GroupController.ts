@@ -10,7 +10,7 @@ import IDateHelper from 'helpers/IDateHelper';
 // class GroupController implements IGroupController {
 class GroupController {
     private readonly _repository: IGroupRepository;
-    private readonly _validator: IValidator<any>;
+    // private readonly _validator: IValidator<any>;
     private readonly _dateHelper: IDateHelper;
     private readonly _logger: ILogger;
 
@@ -19,7 +19,7 @@ class GroupController {
                 logger: ILogger,
                 dateHelper: IDateHelper) {
         this._repository = repository;
-        this._validator = validator;
+        // this._validator = validator;
         this._logger = logger;
         this._dateHelper = dateHelper;
     }
@@ -28,7 +28,10 @@ class GroupController {
         try {
             this._logger.info('GroupController getMyGroups');
             const user = req.user;
-            if (!user) { return res.status(HttpStatus.NOT_FOUND); }
+            if (!user) {
+                res.status(HttpStatus.NOT_FOUND).json();
+                return undefined;
+            }
             const userId = user._id;
             const skip = parseInt(req.query.skip, 10);
             const limit = parseInt(req.query.limit, 10);
