@@ -6,5 +6,6 @@ export default {
   MONGOD_IP: '127.0.0.1',
   MONGOD_PORT: '27017',
   MONGOD_AUTH: '',
-  MONGOD_DB: 'node-typescript-mvc',
+  MONGOD_DB: 'my_native_buddy',
+  SECRET: 'supersecret',
 };
