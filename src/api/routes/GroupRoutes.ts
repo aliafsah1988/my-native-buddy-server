@@ -1,15 +1,20 @@
 import ILogger from 'services/ILogger';
 import IGroupController from '../controllers/IGroupController';
 import IRoute from './IRoute';
+import IAuthMiddleware from '../middleware/IAuthMiddleware';
+import * as express from 'express';
 
  class GroupRoutes implements IRoute {
+   public router = express.Router();
    private readonly _controller: IGroupController;
    private _app: any;
    private readonly _logger: ILogger;
+   private readonly _authMiddleware: IAuthMiddleware;
 
-   constructor(controller: IGroupController, logger: ILogger) {
+   constructor(controller: IGroupController, logger: ILogger, authMiddleware: IAuthMiddleware) {
      this._controller = controller;
      this._logger = logger;
+     this._authMiddleware = authMiddleware;
    }
 
    public registerApp(app: any): void {
@@ -46,6 +51,7 @@ import IRoute from './IRoute';
 
     this._app.route('/api/group/user')
     .get(
+      this._authMiddleware.checkUserAuthentication.bind(this._authMiddleware),
       this._controller.getMyGroups.bind(this._controller)
     );
    }
