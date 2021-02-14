@@ -1,10 +1,10 @@
 import IBaseModel from './IBaseModel';
 
 interface IGroupDbModel extends IBaseModel {
-    Name: string;
-    Description: string;
-    UserId: object;
-    LangId: object; // default language
+    name: string;
+    description: string;
+    userId: object;
+    langId: object; // default language
 }
 
 export default IGroupDbModel;

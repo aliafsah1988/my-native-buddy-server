@@ -1,5 +1,5 @@
 interface IBaseModel {
-    id: object;
+    _id: object;
     persistedAt: number;
     updatedAt: number;
 }

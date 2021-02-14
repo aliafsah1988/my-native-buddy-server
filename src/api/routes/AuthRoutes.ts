@@ -24,10 +24,10 @@ import * as express from 'express';
 
     this._app.route('/api/auth/getToken')
         .post(this._controller.login.bind(this._controller));
-    this._app.route('/api/auth/logout')
-        .post(this._controller.logout.bind(this._controller));
-    this._app.route('/api/auth/register')
-        .post(this._controller.register.bind(this._controller));
+    // this._app.route('/api/auth/logout')
+    //     .post(this._controller.logout.bind(this._controller));
+    // this._app.route('/api/auth/register')
+    //     .post(this._controller.register.bind(this._controller));
    }
 }
 

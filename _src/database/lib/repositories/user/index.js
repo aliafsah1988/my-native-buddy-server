@@ -33,60 +33,60 @@ class userRepository {
     }
   }
 
-  getByEmail(email, callback) {
-    try {
-      const projectionQuery = {
-        // fields: {
-        //   password: 0
-        // }
-      }
-      this.dataBaseManager.dataBase.collection('users').findOne(
-        {
-          email
-        },
-        projectionQuery,
-        (err, result) => {
-          if (err) {
-            logger.log_error(err)
-            return callback(err, null)
-          }
-          logger.log_info('getUserByEmail done')
-          callback(null, result)
-        }
-      )
-    } catch (err) {
-      logger.log_error(err)
-      callback(err, null)
-    }
-  }
+  // getByEmail(email, callback) {
+  //   try {
+  //     const projectionQuery = {
+  //       // fields: {
+  //       //   password: 0
+  //       // }
+  //     }
+  //     this.dataBaseManager.dataBase.collection('users').findOne(
+  //       {
+  //         email
+  //       },
+  //       projectionQuery,
+  //       (err, result) => {
+  //         if (err) {
+  //           logger.log_error(err)
+  //           return callback(err, null)
+  //         }
+  //         logger.log_info('getUserByEmail done')
+  //         callback(null, result)
+  //       }
+  //     )
+  //   } catch (err) {
+  //     logger.log_error(err)
+  //     callback(err, null)
+  //   }
+  // }
 
-  getById(id, callback) {
-    try {
-      const o_id = new mongodb.ObjectID(id)
-      const projectionQuery = {
-        fields: {
-          password: 0
-        }
-      }
-      this.dataBaseManager.dataBase.collection('users').findOne(
-        {
-          _id: o_id
-        },
-        projectionQuery,
-        (err, result) => {
-          if (err) {
-            logger.log_error(err)
-            return callback(err, null)
-          }
-          logger.log_info('getById done')
-          callback(null, result)
-        }
-      )
-    } catch (error) {
-      logger.log_error(error)
-      callback(error, null)
-    }
-  }
+  // getById(id, callback) {
+  //   try {
+  //     const o_id = new mongodb.ObjectID(id)
+  //     const projectionQuery = {
+  //       fields: {
+  //         password: 0
+  //       }
+  //     }
+  //     this.dataBaseManager.dataBase.collection('users').findOne(
+  //       {
+  //         _id: o_id
+  //       },
+  //       projectionQuery,
+  //       (err, result) => {
+  //         if (err) {
+  //           logger.log_error(err)
+  //           return callback(err, null)
+  //         }
+  //         logger.log_info('getById done')
+  //         callback(null, result)
+  //       }
+  //     )
+  //   } catch (error) {
+  //     logger.log_error(error)
+  //     callback(error, null)
+  //   }
+  // }
 
   create(newUser, callback) {
     try {

@@ -22,6 +22,12 @@ class UserRepository implements IUserRepository {
         return await this._databaseManager.database
             .collection(COLLECTION_NAME).findOne({ _id });
     }
+
+    public async getByEmail(email: string): Promise<IUserDbModel> {
+        this._logger.info('UserRepository getByEmail');
+        return await this._databaseManager.database
+            .collection(COLLECTION_NAME).findOne({ email });
+    }
 }
 
 export default UserRepository;

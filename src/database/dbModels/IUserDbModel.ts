@@ -1,15 +1,15 @@
 import IBaseModel from './IBaseModel';
 
 interface IUserDbModel extends IBaseModel {
-    Email: string;
-    Password: string;
-    Role: string;
-    Active: string;
-    FirstName: string;
-    LastName: string;
-    Phone_number: string;
-    Location: string;
-    Birth_date: number;
+    email: string;
+    password: string;
+    role: string;
+    active: string;
+    firstName: string;
+    lastName: string;
+    phone_number: string;
+    location: string;
+    birth_date: number;
 }
 
 export default IUserDbModel;

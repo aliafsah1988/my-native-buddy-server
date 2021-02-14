@@ -3,11 +3,11 @@ import IGroupDbModel from './IGroupDbModel';
 class GroupDbModel implements IGroupDbModel {
     public readonly persistedAt: number;
     public readonly updatedAt: number;
-    private name: string;
-    private description: string;
-    private userId: object;
-    private langId: object;
-    private _id: any;
+    public name: string;
+    public description: string;
+    public userId: object;
+    public langId: object;
+    public _id: any;
 
     constructor(_id: object,
                 name: string,
@@ -23,26 +23,6 @@ class GroupDbModel implements IGroupDbModel {
         this.langId = langId;
         this.persistedAt = persistedAt;
         this.updatedAt = updatedAt;
-    }
-
-    public get Name(): string {
-        return this.name;
-    }
-
-    public get Description(): string {
-        return this.description;
-    }
-
-    public get UserId(): object {
-        return this.userId;
-    }
-
-    public get LangId(): object {
-        return this.langId;
-    }
-
-    public get id(): object {
-        return this._id;
     }
 }
 

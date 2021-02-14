@@ -3,16 +3,16 @@ import IUserDbModel from './IUserDbModel';
 class UserDbModel implements IUserDbModel {
     public readonly persistedAt: number;
     public readonly updatedAt: number;
-    private email: string;
-    private password: string;
-    private role: string;
-    private active: string;
-    private firstName: string;
-    private lastName: string;
-    private phone_number: string;
-    private location: string;
-    private birth_date: number;
-    private _id: any;
+    public email: string;
+    public password: string;
+    public role: string;
+    public active: string;
+    public firstName: string;
+    public lastName: string;
+    public phone_number: string;
+    public location: string;
+    public birth_date: number;
+    public _id: any;
 
     constructor(_id: object,
                 email: string,
@@ -38,46 +38,6 @@ class UserDbModel implements IUserDbModel {
         this.birth_date = birth_date;
         this.persistedAt = persistedAt;
         this.updatedAt = updatedAt;
-    }
-
-    public get Email(): string {
-        return this.email;
-    }
-
-    public get Password(): string {
-        return this.password;
-    }
-
-    public get Role(): string {
-        return this.role;
-    }
-
-    public get Active(): string {
-        return this.active;
-    }
-
-    public get FirstName(): string {
-        return this.firstName;
-    }
-
-    public get LastName(): string {
-        return this.lastName;
-    }
-
-    public get Phone_number(): string {
-        return this.phone_number;
-    }
-
-    public get Location(): string {
-        return this.location;
-    }
-
-    public get Birth_date(): number {
-        return this.birth_date;
-    }
-
-    public get id(): object {
-        return this._id;
     }
 }
 

@@ -9,14 +9,14 @@ class RestServer implements IRestServer {
     private readonly port: number;
     private readonly app: any;
     private readonly host: string;
-    private readonly sampleRoutes: IRoute;
+    private readonly _routes: IRoute[];
     private readonly _logger: ILogger;
 
-    constructor(port: number, host: string, sampleRoutes: IRoute, logger: ILogger) {
+    constructor(port: number, host: string, routes: IRoute[], logger: ILogger) {
       this.app = express();
       this.port = port;
       this.host = host;
-      this.sampleRoutes = sampleRoutes;
+      this._routes = routes;
       this._logger = logger;
 
       this.initBodyParser();
@@ -72,8 +72,11 @@ class RestServer implements IRestServer {
     private registerRoutes(): void {
       try {
         this._logger.info('registering routes');
-        this.sampleRoutes.registerApp(this.app);
-        this.sampleRoutes.attach();
+        this._routes.forEach(route => {
+          route.registerApp(this.app);
+          route.attach();
+        });
+
       } catch (error) {
         this._logger.error(error);
       }
