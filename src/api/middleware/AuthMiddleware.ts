@@ -7,6 +7,7 @@ import WrongAuthenticationTokenException from '../exceptions/WrongAuthentication
 import DataStoredInToken from '../interfaces/dataStoredInToken';
 import ILogger from 'services/ILogger';
 import IAuthMiddleware from './IAuthMiddleware';
+import UserType from '../../types/UserType';
 
 class AuthMiddleware implements IAuthMiddleware {
     private _logger;
@@ -40,6 +41,30 @@ class AuthMiddleware implements IAuthMiddleware {
           next(new WrongAuthenticationTokenException());
         }
     }
+
+    public async checkSuperAuthentication (request: any, response: Response, next: NextFunction): Promise<void>  {
+      try {
+        this._logger.info('checking super auth');
+        const token = request.headers['x-access-token'];
+        if (token) {
+          const secret = config.SECRET;
+          const verificationResponse = jwt.verify(token, secret) as DataStoredInToken;
+          const user = await this._userRepository.getById(verificationResponse.id);
+          if (user && user.role === UserType.SUPER) {
+            request.user = user;
+            next();
+          } else {
+            next(new WrongAuthenticationTokenException());
+          }
+        } else {
+          this._logger.info('user authentication failed, no token provided');
+          next(new AuthenticationTokenMissingException());
+        }
+      } catch (error) {
+        this._logger.error(error);
+        next(new WrongAuthenticationTokenException());
+      }
+  }
 }
 
 export default AuthMiddleware;
