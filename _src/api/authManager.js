@@ -34,65 +34,65 @@ exports.checkRole = (req, res, callback) => {
   }
 }
 
-exports.checkUserAuthentication = (req, res, callback) => {
-  try {
-    logger.log_info('checking user auth')
-    const token = req.headers['x-access-token']
-    if (!token) {
-      apiResponse.sendUnAuthorized(res)
-      logger.log_info('user authentication failed')
-      return
-    }
-    jwt.verify(token, config.secret, (err, decoded) => {
-      if (err) {
-        apiResponse.sendUnAuthorized(res)
-        logger.log_info('user authentication failed')
-        logger.log_error(err)
-        return
-      }
-      users.getById(decoded.id, (error, user) => {
-        if (error) return apiResponse.sendNotFound(res)
-        if (!user) return apiResponse.sendNotFound(res)
-        callback(res, user)
-      })
-    })
-  } catch (error) {
-    apiResponse.sendInternalError(res, error)
-    logger.log_error(error)
-  }
-}
+// exports.checkUserAuthentication = (req, res, callback) => {
+//   try {
+//     logger.log_info('checking user auth')
+//     const token = req.headers['x-access-token']
+//     if (!token) {
+//       apiResponse.sendUnAuthorized(res)
+//       logger.log_info('user authentication failed')
+//       return
+//     }
+//     jwt.verify(token, config.secret, (err, decoded) => {
+//       if (err) {
+//         apiResponse.sendUnAuthorized(res)
+//         logger.log_info('user authentication failed')
+//         logger.log_error(err)
+//         return
+//       }
+//       users.getById(decoded.id, (error, user) => {
+//         if (error) return apiResponse.sendNotFound(res)
+//         if (!user) return apiResponse.sendNotFound(res)
+//         callback(res, user)
+//       })
+//     })
+//   } catch (error) {
+//     apiResponse.sendInternalError(res, error)
+//     logger.log_error(error)
+//   }
+// }
 
-exports.checkAuthForSuper = (req, res, callback) => {
-  try {
-    logger.log_info('checking super auth')
-    const token = req.headers['x-access-token']
-    if (!token) {
-      apiResponse.sendUnAuthorized(res)
-      logger.log_info('super authentication failed')
-      return
-    }
-    jwt.verify(token, config.secret, (err, decoded) => {
-      if (err) {
-        apiResponse.sendUnAuthorized(res)
-        logger.log_info('super authentication failed')
-        return
-      }
-      users.getById(decoded.id, (error, user) => {
-        if (error) return apiResponse.sendNotFound(res)
-        if (!user) return apiResponse.sendNotFound(res)
-        if (user.role !== 'super') {
-          apiResponse.sendUnAuthorized(res)
-          logger.log_info('super authorization failed')
-          return
-        }
-        callback(user)
-      })
-    })
-  } catch (error) {
-    apiResponse.sendInternalError(res, error)
-    logger.log_error(error)
-  }
-}
+// exports.checkAuthForSuper = (req, res, callback) => {
+//   try {
+//     logger.log_info('checking super auth')
+//     const token = req.headers['x-access-token']
+//     if (!token) {
+//       apiResponse.sendUnAuthorized(res)
+//       logger.log_info('super authentication failed')
+//       return
+//     }
+//     jwt.verify(token, config.secret, (err, decoded) => {
+//       if (err) {
+//         apiResponse.sendUnAuthorized(res)
+//         logger.log_info('super authentication failed')
+//         return
+//       }
+//       users.getById(decoded.id, (error, user) => {
+//         if (error) return apiResponse.sendNotFound(res)
+//         if (!user) return apiResponse.sendNotFound(res)
+//         if (user.role !== 'super') {
+//           apiResponse.sendUnAuthorized(res)
+//           logger.log_info('super authorization failed')
+//           return
+//         }
+//         callback(user)
+//       })
+//     })
+//   } catch (error) {
+//     apiResponse.sendInternalError(res, error)
+//     logger.log_error(error)
+//   }
+// }
 
 exports.login = (inputPassword, inputUser, res) => {
   try {
