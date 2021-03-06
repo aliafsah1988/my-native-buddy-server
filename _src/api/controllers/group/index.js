@@ -7,31 +7,31 @@ const GroupModel = dataBase.models.groupModel
 const groups = dataBase.groups
 
 class GroupController {
-  async create(req, res) {
-    try {
-      const user = req.user
-      if (!user) return apiResponse.sendNotFound(res)
+  // async create(req, res) {
+  //   try {
+  //     const user = req.user
+  //     if (!user) return apiResponse.sendNotFound(res)
 
-      const userId = user._id
-      const name = req.body.name
-      const description = req.body.description
-      const langId = req.body.langId
+  //     const userId = user._id
+  //     const name = req.body.name
+  //     const description = req.body.description
+  //     const langId = req.body.langId
 
-      const newGroup = new GroupModel(name,
-        description,
-        userId,
-        langId,
-        dateHelper.now())
+  //     const newGroup = new GroupModel(name,
+  //       description,
+  //       userId,
+  //       langId,
+  //       dateHelper.now())
 
-      const result = await groups.create(newGroup)
-      apiResponse.sendSucces(res, {
-        id: result.insertedId
-      })
-    } catch (error) {
-      logger.log_error(error)
-      apiResponse.sendInternalError(res, error)
-    }
-  }
+  //     const result = await groups.create(newGroup)
+  //     apiResponse.sendSucces(res, {
+  //       id: result.insertedId
+  //     })
+  //   } catch (error) {
+  //     logger.log_error(error)
+  //     apiResponse.sendInternalError(res, error)
+  //   }
+  // }
 
   async delete(req, res) {
     try {

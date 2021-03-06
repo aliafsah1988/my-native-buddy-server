@@ -42,10 +42,11 @@ import * as express from 'express';
       this._controller.create.bind(this._controller)
     );
 
-    // this._app.route('/api/group')
-    // .put(
-    //   this._controller.update.bind(this._controller)
-    // );
+    this._app.route('/api/group')
+    .put(
+      this._authMiddleware.checkUserAuthentication.bind(this._authMiddleware),
+      this._controller.update.bind(this._controller)
+    );
 
     // this._app.route('/api/group')
     // .delete(

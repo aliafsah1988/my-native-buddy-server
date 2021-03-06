@@ -7,7 +7,7 @@ interface IGroupRepository extends IRepository<IGroupDbModel> {
     getById: (groupId: string) => Promise<IGroupDbModel>;
     getByIdAndUserId: (userId: string, groupId: string) => Promise<IGroupDbModel>;
     create: (newGroup: IGroupDbModel) => Promise<any>;
-    update: (userId: string, groupId: string, modifiedFields: IGroupDbModel) => Promise<any>;
+    update: (userId: string, modifiedFields: IGroupDbModel) => Promise<any>;
     deleteByIdAndUserId: (userId: string, groupId: string) => Promise<boolean>;
 }
 

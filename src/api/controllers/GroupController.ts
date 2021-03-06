@@ -131,6 +131,40 @@ class GroupController {
             }
         }
     }
+
+    public async update(req: any, res: any): Promise<void> {
+        try {
+            this._logger.info('GroupController update');
+            const user = req.user;
+            if (!user) { return res.status(HttpStatus.NOT_FOUND); }
+
+            const userId = user._id;
+            const groupId = req.query.id;
+            const {name, description, langId} = req.body;
+
+            const result = await
+                this._repository.update(
+                    userId,
+                    new GroupDbModel(
+                    groupId,
+                    name,
+                    description,
+                    userId,
+                    langId,
+                    this._dateHelper.now(),
+                    undefined
+                ));
+
+            res.status(HttpStatus.OK).json(result.insertedId);
+        } catch (error) {
+            // TODO better error handling with middlewares
+            if (error instanceof ValidationError) {
+                return res.status(HttpStatus.BAD_REQUEST).json(error);
+            } else {
+                res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(error);
+            }
+        }
+    }
 }
 
 export default GroupController;

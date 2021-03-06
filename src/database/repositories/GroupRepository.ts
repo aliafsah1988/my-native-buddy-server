@@ -59,12 +59,13 @@ class GroupRepository implements IGroupRepository {
             .collection(COLLECTION_NAME).insertOne(newEntry);
     }
 
-    public async update(userId: string, groupId: string, modifiedFields: IGroupDbModel): Promise<any> {
+    public async update(userId: string, modifiedFields: IGroupDbModel): Promise<any> {
         this._logger.info('GroupRepository update');
         const query = {
             userId: new mongodb.ObjectID(userId),
-            _id: new mongodb.ObjectID(groupId),
+            _id: new mongodb.ObjectID(modifiedFields._id),
         };
+        delete modifiedFields._id;
         const newvalues = {
             $set: modifiedFields,
         };
