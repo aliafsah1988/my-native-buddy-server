@@ -176,9 +176,7 @@ class GroupController {
               return;
             }
 
-            res.status(HttpStatus.OK).json({
-                id: await this._repository.deleteByIdAndUserId(user._id, wordId),
-            });
+            res.status(HttpStatus.OK).json(await this._repository.deleteByIdAndUserId(user._id, wordId));
           } catch (error) {
             // TODO better error handling with middlewares
             if (error instanceof ValidationError) {

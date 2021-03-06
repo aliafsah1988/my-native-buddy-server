@@ -79,8 +79,9 @@ class GroupRepository implements IGroupRepository {
             userId: new mongodb.ObjectID(userId),
             _id: new mongodb.ObjectID(groupId),
         };
-        return await this._databaseManager.database
+        const result = await this._databaseManager.database
             .collection(COLLECTION_NAME).deleteOne(query);
+        return result.result.n >= 1;
     }
 }
 
