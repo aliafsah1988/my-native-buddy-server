@@ -48,10 +48,11 @@ import * as express from 'express';
       this._controller.update.bind(this._controller)
     );
 
-    // this._app.route('/api/group')
-    // .delete(
-    //   this._controller.delete.bind(this._controller)
-    // );
+    this._app.route('/api/group')
+    .delete(
+      this._authMiddleware.checkUserAuthentication.bind(this._authMiddleware),
+      this._controller.delete.bind(this._controller)
+    );
 
     this._app.route('/api/group/user')
     .get(

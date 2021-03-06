@@ -165,6 +165,29 @@ class GroupController {
             }
         }
     }
+
+    public async delete(req: any, res: any): Promise<void> {
+        try {
+            const user = req.user;
+            const wordId = req.query.id;
+            // TODO validate
+            if (!wordId || wordId.length === 0) {
+              res.status(HttpStatus.BAD_REQUEST).json('no word id provided');
+              return;
+            }
+
+            res.status(HttpStatus.OK).json({
+                id: await this._repository.deleteByIdAndUserId(user._id, wordId),
+            });
+          } catch (error) {
+            // TODO better error handling with middlewares
+            if (error instanceof ValidationError) {
+                return res.status(HttpStatus.BAD_REQUEST).json(error);
+            } else {
+                res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(error);
+            }
+          }
+    }
 }
 
 export default GroupController;
