@@ -33,7 +33,6 @@ class UserRepository implements IUserRepository {
         this._logger.info('UserRepository create');
         const result = await this._databaseManager.database
             .collection(COLLECTION_NAME).insertOne(newUser);
-        console.log(JSON.stringify(result.ops));
         return result.ops[0];
     }
 }

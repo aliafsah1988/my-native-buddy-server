@@ -92,17 +92,17 @@ class GroupController {
   //   }
   // }
 
-  async getById(req, res) {
-    try {
-      const user = req.user
-      const userId = user._id
-      const groupId = req.query.id
-      if (user.role === 'super') { apiResponse.sendSucces(res, await groups.getById(groupId)) } else { apiResponse.sendSucces(res, await groups.getByIdAndUserId(userId, groupId)) }
-    } catch (error) {
-      apiResponse.sendInternalError(res, error)
-      logger.log_error(error)
-    }
-  }
+  // async getById(req, res) {
+  //   try {
+  //     const user = req.user
+  //     const userId = user._id
+  //     const groupId = req.query.id
+  //     if (user.role === 'super') { apiResponse.sendSucces(res, await groups.getById(groupId)) } else { apiResponse.sendSucces(res, await groups.getByIdAndUserId(userId, groupId)) }
+  //   } catch (error) {
+  //     apiResponse.sendInternalError(res, error)
+  //     logger.log_error(error)
+  //   }
+  // }
 
   async getMyGroups(req, res) {
     try {

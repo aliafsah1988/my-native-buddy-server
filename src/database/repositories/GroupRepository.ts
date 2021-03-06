@@ -53,7 +53,7 @@ class GroupRepository implements IGroupRepository {
             .collection(COLLECTION_NAME).find().skip(skip).limit(limit).toArray();
     }
 
-    public async create(newEntry: IGroupDbModel): Promise<any> {
+    public async create(newEntry: IGroupDbModel): Promise<string> {
         this._logger.info('GroupRepository create');
         return await this._databaseManager.database
             .collection(COLLECTION_NAME).insertOne(newEntry);

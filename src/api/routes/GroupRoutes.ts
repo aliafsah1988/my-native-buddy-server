@@ -36,10 +36,11 @@ import * as express from 'express';
       this._controller.getById.bind(this._controller)
     );
 
-    // this._app.route('/api/group')
-    // .post(
-    //   this._controller.create.bind(this._controller)
-    // );
+    this._app.route('/api/group')
+    .post(
+      this._authMiddleware.checkUserAuthentication.bind(this._authMiddleware),
+      this._controller.create.bind(this._controller)
+    );
 
     // this._app.route('/api/group')
     // .put(

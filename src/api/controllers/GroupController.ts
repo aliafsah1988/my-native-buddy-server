@@ -85,11 +85,11 @@ class GroupController {
                 return undefined;
             }
             const groupId = req.query.id;
-        if (user.role === 'super') {
-            res.status(HttpStatus.OK).json(await this._repository.getById(groupId));
-        } else {
-            res.status(HttpStatus.OK).json(await this._repository.getByIdAndUserId(user._id, groupId));
-        }
+            if (user.role === 'super') {
+                res.status(HttpStatus.OK).json(await this._repository.getById(groupId));
+            } else {
+                res.status(HttpStatus.OK).json(await this._repository.getByIdAndUserId(user._id, groupId));
+            }
         } catch (error) {
             console.error(error);
             // TODO better error handling with middlewares
