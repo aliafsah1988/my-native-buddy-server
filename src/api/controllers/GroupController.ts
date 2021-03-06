@@ -76,6 +76,31 @@ class GroupController {
         }
     }
 
+    public async getById(req: any, res: any): Promise<void> {
+        try {
+            this._logger.info('GroupController getById');
+            const user = req.user;
+            if (!user) {
+                res.status(HttpStatus.NOT_FOUND).json();
+                return undefined;
+            }
+            const groupId = req.query.id;
+        if (user.role === 'super') {
+            res.status(HttpStatus.OK).json(await this._repository.getById(groupId));
+        } else {
+            res.status(HttpStatus.OK).json(await this._repository.getByIdAndUserId(user._id, groupId));
+        }
+        } catch (error) {
+            console.error(error);
+            // TODO better error handling with middlewares
+            if (error instanceof ValidationError) {
+                return res.status(HttpStatus.BAD_REQUEST).json(error);
+            } else {
+                res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(error);
+            }
+        }
+    }
+
     public async create(req: any, res: any): Promise<void> {
         try {
             this._logger.info('GroupController create');

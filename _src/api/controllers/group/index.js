@@ -75,22 +75,22 @@ class GroupController {
     }
   }
 
-  async getByUserId(req, res) {
-    try {
-      const user = req.user
-      if (!user) return apiResponse.sendNotFound(res)
-      const userId = req.query.userId
-      let skip = parseInt(req.query.skip, 10)
-      let limit = parseInt(req.query.limit, 10)
+  // async getByUserId(req, res) {
+  //   try {
+  //     const user = req.user
+  //     if (!user) return apiResponse.sendNotFound(res)
+  //     const userId = req.query.userId
+  //     let skip = parseInt(req.query.skip, 10)
+  //     let limit = parseInt(req.query.limit, 10)
 
-      if (!skip) skip = 0
-      if (!limit) limit = 0
-      apiResponse.sendSucces(res, await groups.getByUserId(userId, limit, skip))
-    } catch (error) {
-      apiResponse.sendInternalError(res, error)
-      logger.log_error(error)
-    }
-  }
+  //     if (!skip) skip = 0
+  //     if (!limit) limit = 0
+  //     apiResponse.sendSucces(res, await groups.getByUserId(userId, limit, skip))
+  //   } catch (error) {
+  //     apiResponse.sendInternalError(res, error)
+  //     logger.log_error(error)
+  //   }
+  // }
 
   async getById(req, res) {
     try {

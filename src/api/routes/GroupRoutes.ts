@@ -30,10 +30,11 @@ import * as express from 'express';
       this._controller.getByUserId.bind(this._controller)
     );
 
-    // this._app.route('/api/group')
-    // .get(
-    //   this._controller.getById.bind(this._controller)
-    // );
+    this._app.route('/api/group')
+    .get(
+      this._authMiddleware.checkUserAuthentication.bind(this._authMiddleware),
+      this._controller.getById.bind(this._controller)
+    );
 
     // this._app.route('/api/group')
     // .post(
