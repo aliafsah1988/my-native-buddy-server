@@ -65,20 +65,20 @@ class AuthController {
         this.apiResponse.sendInternalError(res, error)
       }
     }
-    this.login = (req, res) => {
-      try {
-        const userNameParameter = req.body.email
-        if (userNameParameter === undefined) {
-          this.apiResponse.sendBadRequest(res)
-        } else {
-          const username = String(userNameParameter)
-          this.loginUserByEmail(res, username, req.body.password)
-        }
-      } catch (error) {
-        logger.log_error(error)
-        return this.apiResponse.sendInternalError(res, error)
-      }
-    }
+    // this.login = (req, res) => {
+    //   try {
+    //     const userNameParameter = req.body.email
+    //     if (userNameParameter === undefined) {
+    //       this.apiResponse.sendBadRequest(res)
+    //     } else {
+    //       const username = String(userNameParameter)
+    //       this.loginUserByEmail(res, username, req.body.password)
+    //     }
+    //   } catch (error) {
+    //     logger.log_error(error)
+    //     return this.apiResponse.sendInternalError(res, error)
+    //   }
+    // }
 
     this.logout = (req, res) => {
       try {

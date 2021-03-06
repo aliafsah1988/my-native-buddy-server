@@ -64,6 +64,22 @@ class AuthController implements IAuthController {
             }
         }
     }
+
+    public async logout(req: any, res: any): Promise<void> {
+        try {
+            // TODO do something!
+            res.status(HttpStatus.OK).json({
+                'x-access-token': '',
+            });
+        } catch (error) {
+            // TODO better error handling with middlewares
+            if (error instanceof ValidationError) {
+                return res.status(HttpStatus.BAD_REQUEST).json(error);
+            } else {
+                res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(error);
+            }
+        }
+      }
 }
 
 export default AuthController;
