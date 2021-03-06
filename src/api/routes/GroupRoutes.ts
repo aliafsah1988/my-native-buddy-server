@@ -24,10 +24,11 @@ import * as express from 'express';
 
    public attach(): void {
     this._logger.info('attach GroupRoutes');
-    // this._app.route('/api/group/getByUserId')
-    // .get(
-    //   this._controller.getByUserId.bind(this._controller)
-    // );
+    this._app.route('/api/group/getByUserId')
+    .get(
+      this._authMiddleware.checkSuperAuthentication.bind(this._authMiddleware),
+      this._controller.getByUserId.bind(this._controller)
+    );
 
     // this._app.route('/api/group')
     // .get(

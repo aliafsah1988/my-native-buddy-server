@@ -31,7 +31,8 @@ class GroupRepository implements IGroupRepository {
             .collection(COLLECTION_NAME)
             .find(query)
             .limit(limit)
-            .skip(skip);
+            .skip(skip)
+            .toArray();
     }
 
     public async getByIdAndUserId(userId: string, groupId: string): Promise<IGroupDbModel> {

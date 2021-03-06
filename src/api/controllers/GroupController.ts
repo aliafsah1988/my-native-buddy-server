@@ -54,16 +54,19 @@ class GroupController {
         try {
             this._logger.info('GroupController getByUserId');
             const user = req.user;
-            if (!user) { return res.status(HttpStatus.NOT_FOUND); }
+            if (!user) {
+                res.status(HttpStatus.NOT_FOUND).json();
+                return undefined;
+            }
             const { userId } = req.query;
             const skip = parseInt(req.query.skip, 10);
             const limit = parseInt(req.query.limit, 10);
 
-            const samples = await
+            const groups = await
                 this._repository.getByUserId(userId, limit, skip);
-
-            res.status(HttpStatus.OK).json(samples);
+            res.status(HttpStatus.OK).json(groups);
         } catch (error) {
+            console.error(error);
             // TODO better error handling with middlewares
             if (error instanceof ValidationError) {
                 return res.status(HttpStatus.BAD_REQUEST).json(error);
