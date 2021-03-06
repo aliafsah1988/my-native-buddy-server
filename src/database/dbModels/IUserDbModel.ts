@@ -4,7 +4,7 @@ interface IUserDbModel extends IBaseModel {
     email: string;
     password: string;
     role: string;
-    active: string;
+    active: boolean;
     firstName: string;
     lastName: string;
     phone_number: string;

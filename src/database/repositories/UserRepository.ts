@@ -28,6 +28,14 @@ class UserRepository implements IUserRepository {
         return await this._databaseManager.database
             .collection(COLLECTION_NAME).findOne({ email });
     }
+
+    public async create(newUser: IUserDbModel): Promise<IUserDbModel> {
+        this._logger.info('UserRepository create');
+        const result = await this._databaseManager.database
+            .collection(COLLECTION_NAME).insertOne(newUser);
+        console.log(JSON.stringify(result.ops));
+        return result.ops[0];
+    }
 }
 
 export default UserRepository;

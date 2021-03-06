@@ -6,7 +6,7 @@ class UserDbModel implements IUserDbModel {
     public email: string;
     public password: string;
     public role: string;
-    public active: string;
+    public active: boolean;
     public firstName: string;
     public lastName: string;
     public phone_number: string;
@@ -18,7 +18,7 @@ class UserDbModel implements IUserDbModel {
                 email: string,
                 password: string,
                 role: string,
-                active: string,
+                active: boolean,
                 firstName: string,
                 lastName: string,
                 phone_number: string,
