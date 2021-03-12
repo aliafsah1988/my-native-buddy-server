@@ -1,7 +1,7 @@
 interface IBaseModel {
     _id: object;
-    persistedAt: number;
-    updatedAt: number;
+    createDate: number;
+    persistDate: number;
 }
 
 export default IBaseModel;

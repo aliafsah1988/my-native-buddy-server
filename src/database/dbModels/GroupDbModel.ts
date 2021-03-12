@@ -1,8 +1,8 @@
 import IGroupDbModel from './IGroupDbModel';
 
 class GroupDbModel implements IGroupDbModel {
-    public readonly persistedAt: number;
-    public readonly updatedAt: number;
+    public readonly createDate: number;
+    public readonly persistDate: number;
     public name: string;
     public description: string;
     public userId: object;
@@ -14,15 +14,15 @@ class GroupDbModel implements IGroupDbModel {
                 description: string,
                 userId: object,
                 langId: object,
-                persistedAt: number,
-                updatedAt: number) {
+                createDate: number,
+                persistDate: number) {
         if (_id) { this._id = _id; }
         this.name = name;
         this.description = description;
         this.userId = userId;
         this.langId = langId;
-        this.persistedAt = persistedAt;
-        this.updatedAt = updatedAt;
+        this.createDate = createDate;
+        this.persistDate = persistDate;
     }
 }
 

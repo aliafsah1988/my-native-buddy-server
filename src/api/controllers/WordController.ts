@@ -1,20 +1,19 @@
-import IGroupRepository from '../../database/repositories/IGroupRepository';
-import GroupDbModel from '../../database/dbModels/GroupDbModel';
-// import IGroupController from './IGroupController';
+import IWordRepository from '../../database/repositories/IWordRepository';
+import IWordDbModel from '../../database/dbModels/IWordDbModel';
+import IWordController from '../controllers/IWordController';
 import HttpStatus from 'http-status-codes';
 import IValidator from '../../api/validators/IValidator';
 import ValidationError from '../../api/validators/ValidationError';
 import ILogger from 'services/ILogger';
 import IDateHelper from 'helpers/IDateHelper';
 
-// class GroupController implements IGroupController {
-class GroupController {
-    private readonly _repository: IGroupRepository;
+class WordController implements IWordController {
+    private readonly _repository: IWordRepository;
     // private readonly _validator: IValidator<any>;
     private readonly _dateHelper: IDateHelper;
     private readonly _logger: ILogger;
 
-    constructor(repository: IGroupRepository,
+    constructor(repository: IWordRepository,
                 validator: IValidator<any>,
                 logger: ILogger,
                 dateHelper: IDateHelper) {
@@ -24,9 +23,9 @@ class GroupController {
         this._dateHelper = dateHelper;
     }
 
-    public async getMyGroups(req: any, res: any): Promise<void> {
+    public async getMyWords(req: any, res: any): Promise<void> {
         try {
-            this._logger.info('GroupController getMyGroups');
+            this._logger.info('WordController getMyWords');
             const user = req.user;
             if (!user) {
                 res.status(HttpStatus.NOT_FOUND).json();
@@ -36,10 +35,10 @@ class GroupController {
             const skip = parseInt(req.query.skip, 10);
             const limit = parseInt(req.query.limit, 10);
 
-            const samples = await
+            const words = await
                 this._repository.getByUserId(userId, skip, limit);
 
-            res.status(HttpStatus.OK).json(samples);
+            res.status(HttpStatus.OK).json(words);
         } catch (error) {
             // TODO better error handling with middlewares
             if (error instanceof ValidationError) {
@@ -52,7 +51,7 @@ class GroupController {
 
     public async getByUserId(req: any, res: any): Promise<void> {
         try {
-            this._logger.info('GroupController getByUserId');
+            this._logger.info('WordController getByUserId');
             const user = req.user;
             if (!user) {
                 res.status(HttpStatus.NOT_FOUND).json();
@@ -78,17 +77,17 @@ class GroupController {
 
     public async getById(req: any, res: any): Promise<void> {
         try {
-            this._logger.info('GroupController getById');
+            this._logger.info('WordController getById');
             const user = req.user;
             if (!user) {
                 res.status(HttpStatus.NOT_FOUND).json();
                 return undefined;
             }
-            const groupId = req.query.id;
+            const wordId = req.query.id;
             if (user.role === 'super') {
-                res.status(HttpStatus.OK).json(await this._repository.getById(groupId));
+                res.status(HttpStatus.OK).json(await this._repository.getById(wordId));
             } else {
-                res.status(HttpStatus.OK).json(await this._repository.getByIdAndUserId(user._id, groupId));
+                res.status(HttpStatus.OK).json(await this._repository.getByIdAndUserId(user._id, wordId));
             }
         } catch (error) {
             console.error(error);
@@ -103,23 +102,37 @@ class GroupController {
 
     public async create(req: any, res: any): Promise<void> {
         try {
-            this._logger.info('GroupController create');
+            this._logger.info('WordController create');
             const user = req.user;
             if (!user) { return res.status(HttpStatus.NOT_FOUND); }
 
             const userId = user._id;
-            const {name, description, langId} = req.body;
+            const text = req.body.text.trim();
+            const description = req.body.description;
+            const synonyms = req.body.synonyms;
+            const translation = req.body.translation;
+            const groupId = req.body.groupId;
+            const langId = req.body.langId;
+            const today = this._dateHelper.today();
+
+            if (await this._repository.getByUserIdAndText(userId, text)) {
+                res.status(HttpStatus.INTERNAL_SERVER_ERROR).json('word already exists');
+                return;
+            }
 
             const result = await
-                this._repository.create(new GroupDbModel(
-                    undefined,
-                    name,
+                this._repository.create({
+                    text,
                     description,
+                    synonyms,
+                    translation,
+                    nextpractice: today,
+                    correctcount: 0,
                     userId,
+                    groupId,
                     langId,
-                    this._dateHelper.now(),
-                    undefined
-                ));
+                    createDate: await this._dateHelper.now(),
+                } as IWordDbModel);
 
             res.status(HttpStatus.OK).json(result.insertedId);
         } catch (error) {
@@ -139,21 +152,36 @@ class GroupController {
             if (!user) { return res.status(HttpStatus.NOT_FOUND); }
 
             const userId = user._id;
-            const groupId = req.query.id;
-            const {name, description, langId} = req.body;
+            const wordId = req.query.id;
+            const text = req.body.text.trim();
+            const description = req.body.description;
+            const synonyms = req.body.synonyms;
+            const translation = req.body.translation;
+            const groupId = req.body.groupId;
+            const langId = req.body.langId;
+
+            const existedWord = await this._repository.getByUserIdAndText(userId, text);
+            if (existedWord && existedWord._id && existedWord._id.toString() !== wordId) {
+                res.status(HttpStatus.INTERNAL_SERVER_ERROR).json('word already exists');
+                return;
+            }
+
+            const modifiedFileds = {
+                text,
+                description,
+                synonyms,
+                translation,
+                groupId,
+                langId,
+                persistDate: this._dateHelper.now(),
+            } as IWordDbModel;
 
             const result = await
                 this._repository.update(
                     userId,
-                    new GroupDbModel(
-                    groupId,
-                    name,
-                    description,
-                    userId,
-                    langId,
-                    this._dateHelper.now(),
-                    undefined
-                ));
+                    wordId,
+                    modifiedFileds
+                );
 
             res.status(HttpStatus.OK).json(result.insertedId);
         } catch (error) {
@@ -169,14 +197,14 @@ class GroupController {
     public async delete(req: any, res: any): Promise<void> {
         try {
             const user = req.user;
-            const groupId = req.query.id;
+            const wordId = req.query.id;
             // TODO validate
-            if (!groupId || groupId.length === 0) {
-              res.status(HttpStatus.BAD_REQUEST).json('no group id provided');
+            if (!wordId || wordId.length === 0) {
+              res.status(HttpStatus.BAD_REQUEST).json('no word id provided');
               return;
             }
 
-            res.status(HttpStatus.OK).json(await this._repository.deleteByIdAndUserId(user._id, groupId));
+            res.status(HttpStatus.OK).json(await this._repository.deleteByIdAndUserId(user._id, wordId));
           } catch (error) {
             // TODO better error handling with middlewares
             if (error instanceof ValidationError) {
@@ -188,4 +216,4 @@ class GroupController {
     }
 }
 
-export default GroupController;
+export default WordController;

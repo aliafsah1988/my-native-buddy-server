@@ -1,8 +1,8 @@
 import IUserDbModel from './IUserDbModel';
 
 class UserDbModel implements IUserDbModel {
-    public readonly persistedAt: number;
-    public readonly updatedAt: number;
+    public readonly createDate: number;
+    public readonly persistDate: number;
     public email: string;
     public password: string;
     public role: string;
@@ -24,8 +24,8 @@ class UserDbModel implements IUserDbModel {
                 phone_number: string,
                 location: string,
                 birth_date: number,
-                persistedAt: number,
-                updatedAt: number) {
+                createDate: number,
+                persistDate: number) {
         if (_id) { this._id = _id; }
         this.email = email;
         this.password = password;
@@ -36,8 +36,8 @@ class UserDbModel implements IUserDbModel {
         this.phone_number = phone_number;
         this.location = location;
         this.birth_date = birth_date;
-        this.persistedAt = persistedAt;
-        this.updatedAt = updatedAt;
+        this.createDate = createDate;
+        this.persistDate = persistDate  ;
     }
 }
 

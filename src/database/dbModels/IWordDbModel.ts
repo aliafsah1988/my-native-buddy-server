@@ -1,15 +1,15 @@
 import IBaseModel from './IBaseModel';
 
 interface IWordDbModel extends IBaseModel {
-  Text: string;
-  Description: string;
-  Synonyms: string;
-  Translation: string;
-  Nextpractice: number;
-  Correctcount: number;
-  UserId: object;
-  GroupId: object;
-  LangId: object;
+  text: string;
+  description: string;
+  synonyms: string;
+  translation: string;
+  nextpractice: number;
+  correctcount: number;
+  userId: object;
+  groupId: object;
+  langId: object;
 }
 
 export default IWordDbModel;
