@@ -36,10 +36,10 @@ class GroupController {
             const skip = parseInt(req.query.skip, 10);
             const limit = parseInt(req.query.limit, 10);
 
-            const samples = await
+            const groups = await
                 this._repository.getByUserId(userId, skip, limit);
 
-            res.status(HttpStatus.OK).json(samples);
+            res.status(HttpStatus.OK).json(groups);
         } catch (error) {
             // TODO better error handling with middlewares
             if (error instanceof ValidationError) {

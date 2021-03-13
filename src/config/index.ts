@@ -8,4 +8,5 @@ export default {
   MONGOD_AUTH: '',
   MONGOD_DB: 'my_native_buddy_test',
   SECRET: 'supersecret',
+  PRACTICE_INTERVALS: [1, 1, 2, 3, 3, 7, 7, 14, 14, 30, 30, 60, 60],
 };
